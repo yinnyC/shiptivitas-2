@@ -126,9 +126,9 @@ app.put('/api/v1/clients/:id', (req, res) => {
   const client = clients.find(client => client.id === id);
 
   /* ---------- Update code below ----------*/
-
-
-
+  const stmt = db.prepare('UPDATE clients SET status = ?, priority = ? WHERE id = ?')
+  const result = stmt.run(status, priority, req.params.id)
+  console.log(clients);
   return res.status(200).send(clients);
 });
 
